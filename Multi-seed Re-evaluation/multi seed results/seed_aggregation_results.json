@@ -1,0 +1,20 @@
+{
+  "greedy_scores": [
+    19.0,
+    19.0,
+    19.0
+  ],
+  "greedy_all_same": true,
+  "sampled_scores": [
+    16.0,
+    20.0,
+    23.0,
+    23.0,
+    23.0
+  ],
+  "sampled_mean": 21.0,
+  "sampled_std": 3.08,
+  "sampled_min": 16.0,
+  "sampled_max": 23.0,
+  "thesis_sentence": "Greedy decoding: 19.0% (deterministic, confirmed across 3 runs). Sampled decoding (temp=0.3): mean 21.0% \u00b1 3.1% across 5 seeds (range: 16%\u201323%)."
+}
