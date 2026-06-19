@@ -16,10 +16,16 @@ OUTPUT : Console summary + significance_results.md (paste directly into thesis C
 my_teacher_solved       = 89;  my_teacher_total       = 100
 
 # From eval_results.json (Qwen trained on full 1487 augmented examples)
-my_student_qwen_solved  = 24;  my_student_qwen_total  = 100
+my_student_qwen_solved_sampling  = 24;  my_student_qwen_total  = 100
+
+
+my_student_qwen_solved_greedy  = 19;  my_student_qwen_total  = 100
 
 # From eval_results_clean_only.json (Qwen trained on 446 clean examples only)
-my_student_clean_solved = 11;  my_student_clean_total = 100
+my_student_clean_solved_greedy = 11;  my_student_clean_total = 100
+
+# From eval_results_clean_only_sample.json (Qwen trained on 446 clean examples only, sampled)
+my_student_clean_solved_sampling = 10;  my_student_clean_total = 100
 
 # SmolLM-360M — failed to learn the task
 my_student_smollm_solved = 0;  my_student_smollm_total = 100
@@ -87,26 +93,31 @@ results.append(compare(
 
 results.append(compare(
     "My student Qwen (24%) vs Babysitting student (9%)",
-    my_student_qwen_solved, my_student_qwen_total,
+    my_student_qwen_solved_sampling, my_student_qwen_total,
     babysitting_student_solved, babysitting_student_total,
 ))
 
 results.append(compare(
     "My student Qwen (24%) vs Babysitting teacher (19%)\n  [Does student beat their teacher?]",
-    my_student_qwen_solved, my_student_qwen_total,
+    my_student_qwen_solved_sampling, my_student_qwen_total,
     babysitting_teacher_solved, babysitting_teacher_total,
 ))
 
 results.append(compare(
     "My student Qwen (24%) vs SmolLM (0%)",
-    my_student_qwen_solved, my_student_qwen_total,
+    my_student_qwen_solved_sampling, my_student_qwen_total,
     my_student_smollm_solved, my_student_smollm_total,
 ))
 
 results.append(compare(
-    "Augmented training (24%) vs Clean-only training (11%)\n  [Does backtracking augmentation help?]",
-    my_student_qwen_solved, my_student_qwen_total,
-    my_student_clean_solved, my_student_clean_total,
+    "Augmented training sampling (24% Pairwise Comparisons) vs Clean-only training sampling (10%)\n  [Does backtracking augmentation help?]",
+    my_student_qwen_solved_sampling, my_student_qwen_total,
+    my_student_clean_solved_sampling, my_student_clean_total,
+))
+results.append(compare(
+    "Augmented training greedy (19%) vs Clean-only training greedy (11%)\n  [Does backtracking augmentation help?]",
+    my_student_qwen_solved_greedy, my_student_qwen_total,
+    my_student_clean_solved_greedy, my_student_clean_total,
 ))
 
 # ── Wilson confidence intervals ───────────────────────────────────────────────
@@ -116,8 +127,8 @@ print("=" * 65)
 
 proportions = [
     ("My Teacher",                    my_teacher_solved,        my_teacher_total),
-    ("My Student Qwen (augmented)",   my_student_qwen_solved,   my_student_qwen_total),
-    ("My Student Qwen (clean only)",  my_student_clean_solved,  my_student_clean_total),
+    ("My Student Qwen (augmented) sampling",   my_student_qwen_solved_sampling,   my_student_qwen_total),
+    ("My Student Qwen (clean only) sampling",  my_student_clean_solved_sampling,  my_student_clean_total),
     ("My Student SmolLM",             my_student_smollm_solved, my_student_smollm_total),
     ("Babysitting Teacher",           babysitting_teacher_solved,babysitting_teacher_total),
     ("Babysitting Student",           babysitting_student_solved,babysitting_student_total),
