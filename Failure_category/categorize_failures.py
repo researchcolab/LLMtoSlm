@@ -17,9 +17,9 @@ import json, re
 from fractions import Fraction
 from collections import Counter
 
-INPUT_FILE = "eval_results.json"
-CAT_OUTPUT = "failure_categories.json"
-MD_OUTPUT  = "failure_summary.md"
+INPUT_FILE = "eval_results_sampled_seed2024.json"
+CAT_OUTPUT = "failure_categories_sampled_seed2024.json"
+MD_OUTPUT  = "failure_summary_sampled_seed2024.md"
 
 # ── Load results ───────────────────────────────────────────────────────────────
 with open(INPUT_FILE) as f:

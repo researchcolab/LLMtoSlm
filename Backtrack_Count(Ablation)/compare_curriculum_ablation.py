@@ -15,7 +15,7 @@ import json, sys
 from pathlib import Path
 
 RESULT_FILES = {
-    "Original mix (30/30/25/15)": "eval_results.json",
+    "Original mix (30/30/25/15)": "eval_results_run1.json",
     "All 1-backtrack (100%)":     "eval_results_fixed_1bt.json",
     "All 2-backtrack (100%)":     "eval_results_fixed_2bt.json",
     "Balanced equal (25/25/25/25)": "eval_results_balanced_equal.json",
